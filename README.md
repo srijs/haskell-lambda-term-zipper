@@ -15,7 +15,7 @@ The following (excerpt of a) term type will serve us as an example throughout th
 
 Beta-reduction is performed such that a term `App (Abs s t1) t2` is reduced to `Let s t1 t2`, which represents `t2[s := t1]`.
 
-Before we continue, credit has to be given to Hinze and Jeuring's excellent pearl _Weaving a Web_, from which most of the introductory data types are derived.[1]
+Before we continue, credit has to be given to Hinze and Jeuring's excellent pearl _Weaving a Web_, from which many of the introductory data types are derived.[1]
 
 ## The Zipper
 
@@ -85,9 +85,9 @@ While walking term using the zipper functions can be done in _O(1)_, the lookup 
 
 Using an efficient map, we can trade lookup complexity for traversal complexity (functions _up_, _down_, _left_ and _right_), both in relation to the number of bound variables.
 
+We choose a string-indexed map of term stacks as the type to hold the information about our environment. Intuitively, you could say we implement a map where you can peel off the current binding, and the previous binding will surface again.
+
     type Env = Map String [Term]
-    
-We choose this type to hold the information about our environment. It is a string-indexed map of term stacks. Intuitively, you could say we implement a map where you can peel off the current binding, and the previous binding will surface again.
 
     push :: String -> Term -> Env -> Env
     push key t = Map.insertWith (++) key [t]
@@ -99,7 +99,7 @@ To have access to the environment from the traversal functions, we change the `L
 
     data Loc = At { it :: Term, ctx :: Ctx, env :: Env }
 
-We modify the zipper functions slightly, to manipulate the environment while traversing the term.
+We modify the zipper functions, to manipulate the environment while traversing the term.
 
     down :: Loc -> Loc
     down (At (Abs s t1) ctx env) = At t1 (Abs' s ctx) (push s (Var s) env)
@@ -125,9 +125,9 @@ We modify the zipper functions slightly, to manipulate the environment while tra
     right (At t1 (LetL s ctx t2) env) = At t2 (LetR s t1 ctx) (push s t1 env)
     right loc = loc
 
-Using a slightly different set of rules, it is trivial to adapt this to allow recursive let bindings.
+Using a slightly different set of rules, it should be trivial to adapt this to allow recursive let bindings.
 
-Finally, the implementation of the new lookup function is trivial.
+Finally, the implementation of the new lookup function is straight-forward.
 
     lookup :: String -> Loc -> Maybe Term
     lookup key (At _ _ env) = Map.lookup key env >>= headMay
