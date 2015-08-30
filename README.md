@@ -81,7 +81,7 @@ As it happens, all the information required to perform a lookup is already captu
 
 ## Faster Lookup
 
-While walking term using the zipper functions can be done in _O(1)_, the lookup function presented in the previous chapter has time complexity _O(n)_, where _n_ is the number of nested terms above. This is a problem when the lookup is an often performed operation.
+While walking term using the zipper functions can be done in _O(1)_, the lookup function presented in the previous chapter has time complexity _O(n)_, where _n_ is the number of nested terms above. This is a problem when the term is relatively complex and the lookup is an often performed operation.
 
 Using an efficient map, we can trade lookup complexity for traversal complexity (functions _up_, _down_, _left_ and _right_), both in relation to the number of bound variables.
 
