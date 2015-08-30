@@ -134,7 +134,7 @@ Finally, the implementation of the new lookup function is trivial.
     lookup :: String -> Loc t -> Maybe (t, Term t)
     lookup key (At _ _ env) = Map.lookup key env >>= headMay
 
-To reduce space usage, we could simplify the `Abs'` and `LetR` contexts to exclude redudant term information. However, in doing so, we would have to rely on unsafe operations internally (e.g. `fromJust`), since the link between items on the stack and inside the context would unknown to the type system.
+To reduce space usage, we could simplify the `Abs'` and `LetR` contexts to exclude redudant term information. However, in doing so, we would have to rely on unsafe operations internally (e.g. `fromJust`), since the link between items on the stack and inside the context would be unknown to the type system.
 
 ---
     
