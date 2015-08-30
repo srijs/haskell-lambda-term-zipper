@@ -4,7 +4,7 @@
 
 Suppose you wanted to implement an algorithm that traverses and rewrites a program term of some type. If said term includes a way to bind variables to other terms inside an environment, you are now faced with the task of keeping track of the bound environment as you traverse the tree.
 
-When implementing alorithms related to the lambda calculus, e.g performing any form of alpha-conversion, beta-reduction, type checking or type inference, this is a common scenario. It is common enough that it warrants a general solution, which will presented in this pearl.
+When implementing algorithms related to the lambda calculus, e.g performing any form of alpha-conversion, beta-reduction, type checking or type inference, this is a common scenario. It is common enough that it warrants a general solution, which will be presented in this pearl.
 
 The following (excerpt of a) term type will serve us as an example throughout the chapters.
 
