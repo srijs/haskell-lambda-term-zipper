@@ -32,7 +32,7 @@ In order to be able to navigate this tree easily, let us introduce two data type
                | LetL String t (Ctx t) (Term t)
                | LetR String t (Term t) (Ctx t)
 
-This context data type is structurally very similar to the `Term` type introduced earlier. It is, in fact, the derivate of its algebraic data type, where the differentation is introducing a branch for every recursive component.[2]
+This context data type is structurally very similar to the `Term` type introduced earlier. It is, in fact, the derivate of its algebraic data type, where the differentation is introducing a summand for every recursive component.[2]
 
 The functions that will enable arbitrary navigation around the term are the following:
 
