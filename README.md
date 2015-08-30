@@ -61,7 +61,7 @@ The functions that will enable arbitrary navigation around the term are the foll
     right (At t1 (LetL s ctx t2)) = At t2 (LetR s t1 ctx)
     right loc = loc
 
-## The Environment
+## Simple Lookup
 
 Using our zipper, we can now traverse the term and perform rewrites. However, while doing so we are going to encounter many subterms that reference a term by name, using a variable. Often, when we want to operate on such a term, we need to perform a lookup in the environment we are currently in.
 
